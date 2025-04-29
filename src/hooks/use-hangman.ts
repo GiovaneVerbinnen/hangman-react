@@ -17,7 +17,7 @@ export function useHangman() {
 
   const isWinner = currentWord.word
     .split("")
-    .every((letter) => guessedLetters.has(letter));
+    .every((letter: string) => guessedLetters.has(letter));
 
   const gameStatus = () => {
     if (isWinner) return GAME_STATUS.WON;
