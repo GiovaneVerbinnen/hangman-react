@@ -1,0 +1,12 @@
+{
+  "title": "Hangman",
+  "config": "Configurations",
+  "restart_game": "Restart game",
+  "game_over": "Game Over",
+  "congrats": "Congratulations",
+  "the_word_was": "The word was",
+  "remaining_guesses": "Remaining guesses",
+  "new_word":"New Word",
+  "tip": "Tip",
+  "made_by": "Made with ❤️ by "
+}

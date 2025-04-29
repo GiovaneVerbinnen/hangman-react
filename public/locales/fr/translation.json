@@ -1,0 +1,12 @@
+{
+  "title": "Pendu",
+  "config": "Paramètres",
+  "restart_game": "Redémarrer le jeu",
+  "game_over": "Fin de la Partie",
+  "congrats": "Félicitations",
+  "the_word_was": "Le mot était",
+  "remaining_guesses": "Tentatives restantes",
+  "new_word": "Un autre mot",
+  "tip": "Indice",
+  "made_by": "Fait avec ❤️ par "
+}

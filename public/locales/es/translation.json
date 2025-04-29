@@ -1,0 +1,12 @@
+{
+  "title": "Ahorcado",
+  "config": "Configuraciones",
+  "restart_game": "Reiniciar juego",
+  "game_over": "Fin del Juego",
+  "congrats": "Felicidades",
+  "the_word_was": "La palabra era",
+  "remaining_guesses": "Intentos restantes",
+  "new_word": "Otra Palabra",
+  "tip": "Pista",
+  "made_by": "Hecho con ❤️ por "
+}

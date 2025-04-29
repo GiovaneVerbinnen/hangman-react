@@ -1,0 +1,12 @@
+{
+  "title": "Forca",
+  "config": "Configurações",
+  "restart_game": "Reiniciar jogo",
+  "game_over": "Fim de Jogo",
+  "congrats": "Parabéns",
+  "the_word_was": "A palavra era",
+  "remaining_guesses": "Tentativas restantes",
+  "new_word":"Outra Palavra",
+  "tip": "Dica",
+  "made_by": "Feito com ❤️ por "
+}
