@@ -9,7 +9,7 @@ i18n
   .use(initReactI18next)
   .init({
     debug: false,
-    fallbackLng: "en",
+    fallbackLng: "pt",
     backend: {
       loadPath:
         "https://hangman-react-git-main-giovaneverbinnens-projects.vercel.app/locales/{{lng}}/{{ns}}.json",
