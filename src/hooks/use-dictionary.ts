@@ -1,13 +1,10 @@
 import { useEffect, useState } from "react";
 import { BASE_WORDS } from "../constants";
-import { Dictionary, Word } from "../pages/Config";
+import { Dictionary, Word } from "../types";
 
 export const useDictionary = () => {
   const [dictionary, setDictionary] = useState<Dictionary>([]);
   const [randomWord, setRandomWord] = useState<Word>({ word: "", tip: "" });
-  setTimeout(() => {
-    console.log(dictionary);
-  }, 1000);
 
   const resetDictionary = () => {
     localStorage.setItem("dictionary", JSON.stringify(BASE_WORDS));
@@ -22,6 +19,10 @@ export const useDictionary = () => {
   const isDBEmpty = database === null || database === "[]";
 
   useEffect(() => {
+    getRandomWord(); // Atualiza randomWord após o dicionário carregar
+  }, [dictionary]); // Executa uma vez após montagem
+
+  useEffect(() => {
     if (isDBEmpty) {
       resetDictionary();
     } else {
@@ -30,31 +31,33 @@ export const useDictionary = () => {
   }, []);
 
   const deleteWord = (item: number) => {
-    const newDictionary = databaseParsed.filter((_, i) => i !== item);
+    const newDictionary = dictionary.filter((_, i) => i !== item);
     localStorage.setItem("dictionary", JSON.stringify(newDictionary));
     setDictionary(newDictionary);
 
     if (newDictionary.length === 0) {
-      console.log("newDictionary.length === 0", newDictionary.length === 0);
       resetDictionary();
     }
   };
 
   const getRandomWord = () => {
-    console.log("dictionary", dictionary);
-
+    if (dictionary.length === 0) {
+      setRandomWord({ word: "", tip: "" });
+      return;
+    }
     const randomIndex = Math.floor(Math.random() * dictionary.length);
 
-    const word = dictionary[randomIndex].word;
-    const tip = dictionary[randomIndex].tip;
-    if (!word) {
-      throw new Error("Word not found");
+    const selectedWord = dictionary[randomIndex];
+    if (!selectedWord) {
+      setRandomWord({ word: "", tip: "" });
+      return;
     }
+
     setRandomWord({
-      word: word.toLowerCase(),
-      tip: tip,
+      word: selectedWord.word!.toLowerCase(),
+      tip: selectedWord.tip,
     });
   };
 
-  return { getRandomWord, deleteWord, dictionary, randomWord };
+  return { deleteWord, dictionary, randomWord };
 };

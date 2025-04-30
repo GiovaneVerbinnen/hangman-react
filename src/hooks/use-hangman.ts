@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useDictionary } from "./use-dictionary";
 
 export const useHangman = () => {
-  const { getRandomWord, randomWord } = useDictionary();
+  const { randomWord } = useDictionary();
   // const [currentWord, setCurrentWord] = useState(getRandomWord);
   const [remainingGuesses, setRemainingGuesses] = useState(GUESSES);
   const [guessedLetters, setGuessedLetters] = useState<Set<string>>(new Set());
@@ -33,7 +33,6 @@ export const useHangman = () => {
   };
 
   const selectWord = () => {
-    getRandomWord();
     setGuessedLetters(new Set());
     setRemainingGuesses(GUESSES);
   };

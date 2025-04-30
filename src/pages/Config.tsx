@@ -2,12 +2,7 @@ import { Languages, Link } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { FormEvent, useState } from "react";
 import { useDictionary } from "../hooks/use-dictionary";
-
-export type Word = {
-  word: string | undefined;
-  tip: string | undefined;
-};
-export type Dictionary = Word[];
+import { Word } from "../types";
 
 const lngs: {
   [key: string]: { nativeName: string };

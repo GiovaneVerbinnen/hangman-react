@@ -33,7 +33,7 @@ export const Board = () => {
 
       <Keyboard guessedLetters={guessedLetters} onGuessLetter={onGuessLetter} />
 
-      <GameModal gameStatus={gameStatus} word={word} onNewWord={selectWord} />
+      <GameModal gameStatus={gameStatus} word={word!} onNewWord={selectWord} />
     </div>
   );
 };
