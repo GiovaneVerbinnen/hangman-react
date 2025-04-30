@@ -8,7 +8,7 @@ const lngs: {
   [key: string]: { nativeName: string };
 } = {
   en: { nativeName: "🇺🇸 English" },
-  pt: { nativeName: "🇧🇷 Português(BR)" },
+  "pt-BR": { nativeName: "🇧🇷 Português(BR)" },
   es: { nativeName: "🇪🇸 Español" },
   fr: { nativeName: "🇫🇷 Français" },
   // ru: { nativeName: "🇷🇺 Pусский" },
