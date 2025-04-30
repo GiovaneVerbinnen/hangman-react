@@ -1,7 +1,7 @@
 import { Languages, Link } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import { WORDS } from "../constants";
 import { FormEvent, useState } from "react";
+import { useDictionary } from "../hooks/use-dictionary";
 
 export type Word = {
   word: string | undefined;
@@ -22,15 +22,16 @@ const lngs: {
 
 export const ConfigPage = () => {
   const { t, i18n } = useTranslation();
+  const { dictionary } = useDictionary();
   const [value, setValue] = useState<Word>({ word: "", tip: "" });
   const [error, setError] = useState(false);
 
-  const dictionary: Dictionary = JSON.parse(
-    localStorage.getItem("dictionary") || "[]",
-  ) as {
-    word: string;
-    tip: string;
-  }[];
+  // const dictionary: Dictionary = JSON.parse(
+  //   localStorage.getItem("dictionary") || "[]",
+  // ) as {
+  //   word: string;
+  //   tip: string;
+  // }[];
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -127,7 +128,7 @@ export const ConfigPage = () => {
         <div className="w-full">
           <p className="text-2xl my-3">
             Palavras Cadastradas:{" "}
-            <span className="font-bold">{WORDS.length}</span>
+            <span className="font-bold">{dictionary.length}</span>
           </p>
           <a
             href="/dictionary"

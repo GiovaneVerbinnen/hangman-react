@@ -1,21 +1,10 @@
-import { useEffect, useState } from "react";
-import { Dictionary } from "./Config";
+import { useDictionary } from "../hooks/use-dictionary";
 
 export const DictionaryPage = () => {
-  const [dictionary, setDictionary] = useState<Dictionary>([]);
-  useEffect(() => {
-    const storedDictionary: Dictionary = JSON.parse(
-      localStorage.getItem("dictionary") || "[]",
-    ) as {
-      word: string;
-      tip: string;
-    }[];
-    setDictionary(storedDictionary);
-  }, []);
+  const { dictionary, deleteWord } = useDictionary();
+
   const handleDelete = (item: number) => {
-    const newDictionary = dictionary.filter((_, i) => i !== item);
-    localStorage.setItem("dictionary", JSON.stringify(newDictionary));
-    setDictionary(newDictionary);
+    deleteWord(item);
   };
   return (
     <div className="flex items-center flex-col">

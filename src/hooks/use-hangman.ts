@@ -1,23 +1,18 @@
-import { GAME_STATUS, GUESSES, WORDS } from "../constants";
+import { GAME_STATUS, GUESSES } from "../constants";
 import { useState } from "react";
+import { useDictionary } from "./use-dictionary";
 
-const getRandomWord = () => {
-  const randomIndex = Math.floor(Math.random() * WORDS.length);
-
-  return {
-    word: WORDS[randomIndex].word.toLowerCase(),
-    tip: WORDS[randomIndex].tip,
-  };
-};
-
-export function useHangman() {
-  const [currentWord, setCurrentWord] = useState(getRandomWord);
+export const useHangman = () => {
+  const { getRandomWord, randomWord } = useDictionary();
+  // const [currentWord, setCurrentWord] = useState(getRandomWord);
   const [remainingGuesses, setRemainingGuesses] = useState(GUESSES);
   const [guessedLetters, setGuessedLetters] = useState<Set<string>>(new Set());
 
-  const isWinner = currentWord.word
-    .split("")
-    .every((letter: string) => guessedLetters.has(letter));
+  const isWinner =
+    randomWord
+      .word!.split("")
+      .every((letter: string) => guessedLetters.has(letter)) &&
+    randomWord.word !== "";
 
   const gameStatus = () => {
     if (isWinner) return GAME_STATUS.WON;
@@ -32,24 +27,24 @@ export function useHangman() {
 
     setGuessedLetters((prev) => new Set([...prev, letter]));
 
-    if (!currentWord.word.includes(letter)) {
+    if (!randomWord.word!.includes(letter)) {
       setRemainingGuesses((prev) => prev - 1);
     }
   };
 
   const selectWord = () => {
-    setCurrentWord(getRandomWord());
+    getRandomWord();
     setGuessedLetters(new Set());
     setRemainingGuesses(GUESSES);
   };
 
   return {
-    word: currentWord.word,
-    tip: currentWord.tip,
+    word: randomWord.word,
+    tip: randomWord.tip,
     remainingGuesses,
     guessedLetters,
     onGuessLetter,
     gameStatus: gameStatus(),
     selectWord,
   };
-}
+};
